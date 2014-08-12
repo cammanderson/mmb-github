@@ -1,0 +1,31 @@
+{
+    "name": "cammanderson/mmb-github",
+    "description": "Github Article Service for mmb",
+    "keywords": ["blog", "markdown", "coding", "github"],
+    "license": "LGPL-3.0",
+    "authors": [
+        {
+            "name": "Cameron Manderson",
+            "email": "cameronmanderson@gmail.com",
+            "role": "developer"
+        }
+    ],
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "MMB\\Github\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "cammanderson/mmb" : "@dev",
+        "knplabs/github-api": "~1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1"
+    },
+    "suggest": {
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}
