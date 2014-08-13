@@ -41,7 +41,7 @@ class GithubArticleService extends AbstractArticleService
         }
     }
 
-    public function listArticles()
+    public function getArticles()
     {
         $articles = array();
         foreach($this->index() as $articlePath) {

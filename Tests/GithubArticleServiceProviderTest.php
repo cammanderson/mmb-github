@@ -16,7 +16,7 @@ class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
         $github->setProvider(new MockArticleProvider());
         $github->setRepository('mmb-github-example');
         $github->setUser('cammanderson');
-        $results = $github->listArticles();
+        $results = $github->getArticles();
         $this->assertNotEmpty($results);
         $result = current($results);
         $this->assertTrue(get_class($result) == 'MMB\Github\Tests\DummyArticle');
@@ -28,7 +28,7 @@ class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
         $github->setProvider(new MockArticleProvider());
         $github->setRepository('mmb-github-example');
         $github->setUser('cammanderson');
-        $results = $github->listArticles();
+        $results = $github->getArticles();
         $this->assertNotEmpty($results);
         $firstResult = current($results);
         $result = $github->getArticle($firstResult->getKey());
