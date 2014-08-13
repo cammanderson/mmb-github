@@ -45,7 +45,7 @@ class GithubArticleService extends AbstractArticleService
     {
         $articles = array();
         foreach($this->index() as $articlePath) {
-            $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($key), $this->reference);
+            $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($articlePath), $this->reference);
             $articles[] = $this->provider->provide($key, $result);
         }
         return $this->index();
