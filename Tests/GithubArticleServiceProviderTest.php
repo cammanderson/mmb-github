@@ -6,7 +6,6 @@
 namespace MMB\Github\Tests;
 
 use MMB\Article;
-use MMB\Markdown\Parsedown\StylisedParsedown;
 use MMB\ArticleProviderInterface;
 
 class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
