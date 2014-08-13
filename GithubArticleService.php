@@ -32,12 +32,12 @@ class GithubArticleService extends AbstractArticleService
         // Obtain the file directly
         try {
             if(!preg_match($this->match, $key))
-                throw new Exception('Restricted by configuration');
+                throw new \Exception('Restricted by configuration');
             $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($key), $this->reference);
 
             return $this->provider->provide($key, $result);
-        } catch (Exception $e) {
-            throw new ArticleNotFoundException();
+        } catch (\Exception $e) {
+            throw new \MMB\ArticleNotFoundException();
         }
     }
 
@@ -46,9 +46,11 @@ class GithubArticleService extends AbstractArticleService
         $articles = array();
         foreach($this->index() as $articlePath) {
             $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($articlePath), $this->reference);
-            $articles[] = $this->provider->provide($key, $result);
+            $articles[$articlePath] = $this->provider->provide($articlePath, $result);
         }
-        return $this->index();
+        krsort($articles);
+
+        return $articles;
     }
 
     /**
