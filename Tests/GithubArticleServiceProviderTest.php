@@ -44,7 +44,6 @@ class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
         $github->setRepository('mmb-github-example');
         $github->setUser('cammanderson');
         $result = $github->getArticle('2014-08-12_Hello-world.md');
-        print_r($result);
         $this->assertTrue(date('Y-m-d', $result->getPublished()->getTimestamp()) == date('Y-m-d', strtotime('2014-08-11')));
     }
 }
