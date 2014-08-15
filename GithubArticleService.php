@@ -6,7 +6,10 @@ namespace MMB\Github;
 
 use MMB\AbstractArticleService;
 use Github\Client;
+use MMB\Meta\AuthoredInterface;
 use MMB\Meta\PublishedInterface;
+use MMB\Meta\TimestampedInterface;
+use MMB\Meta\VersionedInterface;
 
 class GithubArticleService extends AbstractArticleService
 {
@@ -60,9 +63,34 @@ class GithubArticleService extends AbstractArticleService
         if($article instanceof PublishedInterface)
             $article->setPublished($this->getDateFromKey($article->getKey()));
 
+        if(!$article instanceof VersionedInterface) return;
+
+        $commits = $this->getClient()->api('repo')->commits()->all($this->user, $this->repository, array('sha' => $this->reference, 'path' => $article->getKey()));
+
         if($article instanceof VersionedInterface) {
-            $commits = $this->getClient()->api('repo')->commits()->all($this->user, $this->repository, array('sha' => $this->reference, 'path' => $article->getKey()));
-            // TODO: Review commits for information about author/versions/created/updated/etc
+            // TODO: Reference the latest commit
+            if(!empty($commits[0]['sha'])) {
+                $article->setCurrentVersionId($commits[0]['sha']);
+            }
+        }
+
+        if($article instanceof AuthoredInterface) {
+            if(!empty($commits[0]['commit']['author']['name'])) {
+                $article->setAuthorName($commits[0]['commit']['author']['name']);
+            }
+            if(!empty($commits[0]['commit']['author']['email'])) {
+                $article->setAuthorEmail($commits[0]['commit']['author']['email']);
+            }
+        }
+
+        if($article instanceof TimestampedInterface) {
+            if(!empty($commits[0]['commit']['author']['date'])) {
+                $article->setCreated(new \DateTime($commits[0]['commit']['author']['date']));
+            }
+            // TODO: Reference the latest commit
+            if(!empty($commits[0]['commit']['author']['date'])) {
+                $article->setUpdated(new \DateTime($commits[0]['commit']['author']['date']));
+            }
         }
     }
 

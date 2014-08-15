@@ -7,6 +7,7 @@ namespace MMB\Github\Tests;
 
 use MMB\Article;
 use MMB\ArticleProviderInterface;
+use MMB\Github\GithubArticle;
 
 class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
@@ -34,6 +35,16 @@ class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
         $result = $github->getArticle($firstResult->getKey());
         $this->assertNotEmpty($result);
         $this->assertTrue(get_class($result) == 'MMB\Github\Tests\DummyArticle');
+    }
+
+    public function testObtainArticleMeta()
+    {
+        $github = new \MMB\Github\GithubArticleService();
+        $github->setProvider(new MockArticleProvider());
+        $github->setRepository('mmb-github-example');
+        $github->setUser('cammanderson');
+        $result = $github->getArticle('2014-08-12_Hello-world.md');
+        print_r($result);
         $this->assertTrue(date('Y-m-d', $result->getPublished()->getTimestamp()) == date('Y-m-d', strtotime('2014-08-11')));
     }
 }
@@ -51,7 +62,7 @@ class MockArticleProvider implements ArticleProviderInterface
     }
 }
 
-class DummyArticle extends Article {
+class DummyArticle extends GithubArticle {
 
 
     function __construct($key, $content)
