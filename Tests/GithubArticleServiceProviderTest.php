@@ -33,8 +33,8 @@ class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
         $firstResult = current($results);
         $result = $github->getArticle($firstResult->getKey());
         $this->assertNotEmpty($result);
-        print get_class($result);
         $this->assertTrue(get_class($result) == 'MMB\Github\Tests\DummyArticle');
+        $this->assertTrue(date('Y-m-d', $result->getPublished()->getTimestamp()) == date('Y-m-d', strtotime('2014-08-11')));
     }
 }
 

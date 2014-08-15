@@ -6,6 +6,7 @@ namespace MMB\Github;
 
 use MMB\AbstractArticleService;
 use Github\Client;
+use MMB\Meta\PublishedInterface;
 
 class GithubArticleService extends AbstractArticleService
 {
@@ -17,8 +18,6 @@ class GithubArticleService extends AbstractArticleService
     protected $authMethod;
     protected $authUserToken;
     protected $authPassword;
-
-    protected $match = '/(\d{2,4})[_\/\-]+(\d{2})[_\/\-]+(\d{2})[_\/\-]+(.+\.md)$/i';
 
     public function __construct($user = null, $repository = null, $reference = null)
     {
@@ -34,8 +33,10 @@ class GithubArticleService extends AbstractArticleService
             if(!preg_match($this->match, $key))
                 throw new \Exception('Restricted by configuration');
             $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($key), $this->reference);
+            $article = $this->provider->provide($key, $result);
+            $this->obtainArticleMeta($article);
 
-            return $this->provider->provide($key, $result);
+            return $article;
         } catch (\Exception $e) {
             throw new \MMB\ArticleNotFoundException();
         }
@@ -52,6 +53,19 @@ class GithubArticleService extends AbstractArticleService
 
         return $articles;
     }
+
+    protected function obtainArticleMeta($article)
+    {
+        // META as supported by service
+        if($article instanceof PublishedInterface)
+            $article->setPublished($this->getDateFromKey($article->getKey()));
+
+        if($article instanceof VersionedInterface) {
+            $commits = $this->getClient()->api('repo')->commits()->all($this->user, $this->repository, array('sha' => $this->reference, 'path' => $article->getKey()));
+            // TODO: Review commits for information about author/versions/created/updated/etc
+        }
+    }
+
 
     /**
      * Index the repository for markdown content

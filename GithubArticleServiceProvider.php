@@ -28,7 +28,6 @@ class GithubArticleServiceProvider implements ServiceProviderInterface
 
                 return $githubService;
             });
-
     }
 
     /**

@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cammanderson/mmb.git",
-                "reference": "bf8933517806235f87a712ac4d45a0576461d8b1"
+                "reference": "c66fda538af7d1bbf7290cb835e5cf8439bc66ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cammanderson/mmb/zipball/bf8933517806235f87a712ac4d45a0576461d8b1",
-                "reference": "bf8933517806235f87a712ac4d45a0576461d8b1",
+                "url": "https://api.github.com/repos/cammanderson/mmb/zipball/c66fda538af7d1bbf7290cb835e5cf8439bc66ca",
+                "reference": "c66fda538af7d1bbf7290cb835e5cf8439bc66ca",
                 "shasum": ""
             },
             "require": {
@@ -25,7 +25,7 @@
                 "erusev/parsedown": "dev-master",
                 "php": ">=5.4.0",
                 "silex/silex": "~1.2",
-                "symfony/finder": "dev-master",
+                "symfony/finder": "~2.5",
                 "symfony/process": "dev-master",
                 "symfony/yaml": "~2.4"
             },
@@ -58,7 +58,7 @@
                 "coding",
                 "markdown"
             ],
-            "time": "2014-08-13 11:47:10"
+            "time": "2014-08-15 11:18:42"
         },
         {
             "name": "deralex/yaml-config-service-provider",
@@ -118,12 +118,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "e33ac1c56ea591f21b9cf2fa74356ef708d4e130"
+                "reference": "9437766539f6f88e748e7b6183ea31f78e154df5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/e33ac1c56ea591f21b9cf2fa74356ef708d4e130",
-                "reference": "e33ac1c56ea591f21b9cf2fa74356ef708d4e130",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/9437766539f6f88e748e7b6183ea31f78e154df5",
+                "reference": "9437766539f6f88e748e7b6183ea31f78e154df5",
                 "shasum": ""
             },
             "type": "library",
@@ -149,7 +149,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2014-06-18 09:27:25"
+            "time": "2014-08-13 22:27:48"
         },
         {
             "name": "guzzle/guzzle",
@@ -590,17 +590,17 @@
         },
         {
             "name": "symfony/finder",
-            "version": "dev-master",
+            "version": "v2.5.3",
             "target-dir": "Symfony/Component/Finder",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Finder.git",
-                "reference": "3329a4cb19075326ef2cc2abe848aa21b84905cf"
+                "reference": "090fe4eaff414d8f2171c7a4748ea868d530775f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Finder/zipball/3329a4cb19075326ef2cc2abe848aa21b84905cf",
-                "reference": "3329a4cb19075326ef2cc2abe848aa21b84905cf",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/090fe4eaff414d8f2171c7a4748ea868d530775f",
+                "reference": "090fe4eaff414d8f2171c7a4748ea868d530775f",
                 "shasum": ""
             },
             "require": {
@@ -609,7 +609,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6-dev"
+                    "dev-master": "2.5-dev"
                 }
             },
             "autoload": {
@@ -633,7 +633,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
-            "time": "2014-07-28 13:20:53"
+            "time": "2014-07-28 13:20:46"
         },
         {
             "name": "symfony/http-foundation",
@@ -766,12 +766,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "b21c57ca5656ca52665e2dbd851be44442175be9"
+                "reference": "ba2c477082cf505c1721ea6e68010bb1fcfaef8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/b21c57ca5656ca52665e2dbd851be44442175be9",
-                "reference": "b21c57ca5656ca52665e2dbd851be44442175be9",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/ba2c477082cf505c1721ea6e68010bb1fcfaef8b",
+                "reference": "ba2c477082cf505c1721ea6e68010bb1fcfaef8b",
                 "shasum": ""
             },
             "require": {
@@ -804,7 +804,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2014-08-05 09:07:51"
+            "time": "2014-08-14 16:37:29"
         },
         {
             "name": "symfony/routing",
@@ -923,16 +923,16 @@
     "packages-dev": [
         {
             "name": "ocramius/instantiator",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ocramius/Instantiator.git",
-                "reference": "8aa99efa86c51319afc26d23254fe6a8b5a5144a"
+                "reference": "a7abbb5fc9df6e7126af741dd6c140d1a7369435"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/Instantiator/zipball/8aa99efa86c51319afc26d23254fe6a8b5a5144a",
-                "reference": "8aa99efa86c51319afc26d23254fe6a8b5a5144a",
+                "url": "https://api.github.com/repos/Ocramius/Instantiator/zipball/a7abbb5fc9df6e7126af741dd6c140d1a7369435",
+                "reference": "a7abbb5fc9df6e7126af741dd6c140d1a7369435",
                 "shasum": ""
             },
             "require": {
@@ -974,7 +974,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2014-08-11 23:48:35"
+            "time": "2014-08-14 15:10:55"
         },
         {
             "name": "ocramius/lazy-map",
