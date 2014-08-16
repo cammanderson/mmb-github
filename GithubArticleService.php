@@ -48,11 +48,15 @@ class GithubArticleService extends AbstractArticleService
 
     public function getArticles()
     {
+        // TODO: Implement a (non-ttl'd?) index cache based on md5(git-repo-commit-sha . $this->match)
         $articles = array();
         foreach($this->index() as $articlePath) {
             $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($articlePath), $this->reference);
             $document = $this->documentProvider->provide($result);
-            $articles[$articlePath] = $this->articleProvider->provide($articlePath, $document);
+            $article = $this->articleProvider->provide($articlePath, $document);
+            $this->obtainArticleMeta($article);
+
+            $articles[$articlePath] = $article;
         }
         krsort($articles);
 
