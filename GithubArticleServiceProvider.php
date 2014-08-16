@@ -14,6 +14,9 @@ class GithubArticleServiceProvider implements ServiceProviderInterface
      */
     public function register(Application $app)
     {
+        $app['article_provider'] = $app->share(function ($app) {
+                return new GithubArticleProvider();
+            });
         $app['article_service'] = $app->share(function ($app) {
                 $githubService = new \MMB\Github\GithubArticleService(
                     $app['config']['parameters']['github_user'],
