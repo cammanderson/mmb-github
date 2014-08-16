@@ -23,7 +23,8 @@ class GithubArticleServiceProvider implements ServiceProviderInterface
 
                 $githubService->setAuthUserToken($app['config']['parameters']['github_auth_user_token']);
                 $githubService->setAuthMethod($app['config']['parameters']['github_auth_method']);
-                $githubService->setAuthPassword($app['config']['parameters']['github_auth_password']);
+                if(!empty($app['config']['parameters']['github_auth_password']))
+                    $githubService->setAuthPassword($app['config']['parameters']['github_auth_password']);
                 $githubService->setArticleProvider($app['article_provider']);
                 $githubService->setDocumentProvider($app['document_provider']);
 
