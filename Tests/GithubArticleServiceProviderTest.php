@@ -5,8 +5,9 @@
 
 namespace MMB\Github\Tests;
 
-use MMB\Article;
+use MMB\AbstractDocument;
 use MMB\ArticleProviderInterface;
+use MMB\DocumentProviderInterface;
 use MMB\Github\GithubArticle;
 
 class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
@@ -14,7 +15,8 @@ class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
     public function testGetList()
     {
         $github = new \MMB\Github\GithubArticleService();
-        $github->setProvider(new MockArticleProvider());
+        $github->setArticleProvider(new MockArticleProvider());
+        $github->setDocumentProvider(new MockDocumentProvider());
         $github->setRepository('mmb-github-example');
         $github->setUser('cammanderson');
         $results = $github->getArticles();
@@ -26,7 +28,8 @@ class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
     public function testGetArticle()
     {
         $github = new \MMB\Github\GithubArticleService();
-        $github->setProvider(new MockArticleProvider());
+        $github->setArticleProvider(new MockArticleProvider());
+        $github->setDocumentProvider(new MockDocumentProvider());
         $github->setRepository('mmb-github-example');
         $github->setUser('cammanderson');
         $results = $github->getArticles();
@@ -40,11 +43,12 @@ class GithubArticleServiceProviderTest extends \PHPUnit_Framework_TestCase
     public function testObtainArticleMeta()
     {
         $github = new \MMB\Github\GithubArticleService();
-        $github->setProvider(new MockArticleProvider());
+        $github->setArticleProvider(new MockArticleProvider());
+        $github->setDocumentProvider(new MockDocumentProvider());
         $github->setRepository('mmb-github-example');
         $github->setUser('cammanderson');
         $result = $github->getArticle('2014-08-12_Hello-world.md');
-        $this->assertTrue(date('Y-m-d', $result->getPublished()->getTimestamp()) == date('Y-m-d', strtotime('2014-08-11')));
+        $this->assertTrue(date('Y-m-d', $result->getPublished()->getTimestamp()) == date('Y-m-d', strtotime('2014-08-12')));
     }
 }
 
@@ -55,18 +59,21 @@ class MockArticleProvider implements ArticleProviderInterface
      * @param $path
      * @return \MMB\Article
      */
-    public function provide($key, $content)
+    public function provide($key, AbstractDocument $document)
     {
-        return new DummyArticle($key, $content);
+        return new DummyArticle($key, $document);
     }
 }
 
-class DummyArticle extends GithubArticle {
-
-
-    function __construct($key, $content)
+class MockDocumentProvider implements DocumentProviderInterface
+{
+    public function provide($source)
     {
-        $this->key = $key;
-        $this->content = $content;
+        return new DummyDocument($source);
     }
 }
+
+class DummyArticle extends GithubArticle
+{}
+class DummyDocument extends AbstractDocument
+{}

@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cammanderson/mmb.git",
-                "reference": "6655fd37f4803d161bfd4f64072c6668bf06c67f"
+                "reference": "943479e0193468aee8f374d8e319b8ecaf0a3705"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cammanderson/mmb/zipball/6655fd37f4803d161bfd4f64072c6668bf06c67f",
-                "reference": "6655fd37f4803d161bfd4f64072c6668bf06c67f",
+                "url": "https://api.github.com/repos/cammanderson/mmb/zipball/943479e0193468aee8f374d8e319b8ecaf0a3705",
+                "reference": "943479e0193468aee8f374d8e319b8ecaf0a3705",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
                 "coding",
                 "markdown"
             ],
-            "time": "2014-08-15 11:46:52"
+            "time": "2014-08-16 03:55:38"
         },
         {
             "name": "deralex/yaml-config-service-provider",

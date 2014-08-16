@@ -36,7 +36,8 @@ class GithubArticleService extends AbstractArticleService
             if(!preg_match($this->match, $key))
                 throw new \Exception('Restricted by configuration');
             $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($key), $this->reference);
-            $article = $this->provider->provide($key, $result);
+            $document = $this->documentProvider->provide($result);
+            $article = $this->articleProvider->provide($key, $document);
             $this->obtainArticleMeta($article);
 
             return $article;
@@ -50,7 +51,8 @@ class GithubArticleService extends AbstractArticleService
         $articles = array();
         foreach($this->index() as $articlePath) {
             $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($articlePath), $this->reference);
-            $articles[$articlePath] = $this->provider->provide($articlePath, $result);
+            $document = $this->documentProvider->provide($result);
+            $articles[$articlePath] = $this->articleProvider->provide($articlePath, $document);
         }
         krsort($articles);
 

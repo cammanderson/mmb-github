@@ -6,17 +6,18 @@
 namespace MMB\Github;
 
 use MMB\ArticleProviderInterface;
+use MMB\AbstractDocument;
 
-class GithubMarkdownArticleProvider implements ArticleProviderInterface
+class GithubArticleProvider implements ArticleProviderInterface
 {
     /**
      * @param $key
      * @param $path
      * @return \MMB\Article
      */
-    public function provide($key, $path)
+    public function provide($key, AbstractDocument $document)
     {
-        return new GithubArticle($key, $path);
+        return new GithubArticle($key, $document);
     }
 }
  
