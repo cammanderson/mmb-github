@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cammanderson/mmb.git",
-                "reference": "943479e0193468aee8f374d8e319b8ecaf0a3705"
+                "reference": "46a6e8343e14fb752c2091efa9dc897262f94058"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cammanderson/mmb/zipball/943479e0193468aee8f374d8e319b8ecaf0a3705",
-                "reference": "943479e0193468aee8f374d8e319b8ecaf0a3705",
+                "url": "https://api.github.com/repos/cammanderson/mmb/zipball/46a6e8343e14fb752c2091efa9dc897262f94058",
+                "reference": "46a6e8343e14fb752c2091efa9dc897262f94058",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
                 "coding",
                 "markdown"
             ],
-            "time": "2014-08-16 03:55:38"
+            "time": "2014-08-17 11:37:35"
         },
         {
             "name": "deralex/yaml-config-service-provider",
@@ -1284,16 +1284,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.2.0",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "58db726aa45fe26bca93f692cb3d77e9a46b7830"
+                "reference": "e08a5b64400b9ca9124d38db30448d4b10b9f047"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/58db726aa45fe26bca93f692cb3d77e9a46b7830",
-                "reference": "58db726aa45fe26bca93f692cb3d77e9a46b7830",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e08a5b64400b9ca9124d38db30448d4b10b9f047",
+                "reference": "e08a5b64400b9ca9124d38db30448d4b10b9f047",
                 "shasum": ""
             },
             "require": {
@@ -1354,7 +1354,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-08-08 05:13:30"
+            "time": "2014-08-17 08:08:26"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
