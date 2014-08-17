@@ -13,7 +13,6 @@ use MMB\Meta\VersionedInterface;
 use MMB\Meta\ContributedInterface;
 use MMB\Meta\Author;
 
-
 class GithubArticleService extends AbstractArticleService
 {
     protected $user;
@@ -53,7 +52,7 @@ class GithubArticleService extends AbstractArticleService
     {
         // TODO: Implement a (non-ttl'd?) index cache based on md5(git-repo-commit-sha . $this->match)
         $articles = array();
-        foreach($this->index() as $articlePath) {
+        foreach ($this->index() as $articlePath) {
             $result = $this->getClient()->api('repo')->contents()->download($this->user, $this->repository, $this->prefix($articlePath), $this->reference);
             $document = $this->documentProvider->provide($result);
             $article = $this->articleProvider->provide($articlePath, $document);
@@ -76,48 +75,49 @@ class GithubArticleService extends AbstractArticleService
 
         $commits = $this->getClient()->api('repo')->commits()->all($this->user, $this->repository, array('sha' => $this->reference, 'path' => $article->getKey()));
 
-        if($article instanceof VersionedInterface) {
+        if ($article instanceof VersionedInterface) {
             // TODO: Reference the latest commit
-            if(!empty($commits[0]['sha'])) {
+            if (!empty($commits[0]['sha'])) {
                 $article->setCurrentVersionId($commits[0]['sha']);
             }
         }
 
-        if($article instanceof AuthoredInterface) {
+        if ($article instanceof AuthoredInterface) {
             $author = new \MMB\Meta\Author();
 
-            if(!empty($commits[0]['commit']['author']['name'])) {
+            if (!empty($commits[0]['commit']['author']['name'])) {
                 $author->setName($commits[0]['commit']['author']['name']);
             }
-            if(!empty($commits[0]['commit']['author']['email'])) {
+            if (!empty($commits[0]['commit']['author']['email'])) {
                 $author->setEmail($commits[0]['commit']['author']['name']);
             }
+
+            $article->setAuthor($author);
         }
 
-        if($article instanceof ContributedInterface) {
-            foreach($commits as $commit) {
+        if ($article instanceof ContributedInterface) {
+            foreach ($commits as $commit) {
                 $author = new Author();
-                if(!empty($commit['commit']['author']['name'])) {
+                if (!empty($commit['commit']['author']['name'])) {
                     $author->setName($commits[0]['commit']['author']['name']);
                 }
-                if(!empty($commit['commit']['author']['email'])) {
+                if (!empty($commit['commit']['author']['email'])) {
                     $author->setEmail($commits[0]['commit']['author']['name']);
                 }
                 $article->addAuthor($author);
             }
         }
 
-        if($article instanceof TimestampedInterface) {
-            if(!empty($commits[0]['commit']['author']['date'])) {
+        if ($article instanceof TimestampedInterface) {
+            if (!empty($commits[0]['commit']['author']['date'])) {
                 $article->setCreated(new \DateTime($commits[0]['commit']['author']['date']));
             }
             // TODO: Reference the latest commit
-            if(!empty($commits[0]['commit']['author']['date'])) {
+            if (!empty($commits[0]['commit']['author']['date'])) {
                 $article->setUpdated(new \DateTime($commits[0]['commit']['author']['date']));
             }
         }
     }
-
 
     /**
      * Index the repository for markdown content
