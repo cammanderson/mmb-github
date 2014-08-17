@@ -13,8 +13,8 @@ use MMB\Meta\MetaVersionTrait;
 use MMB\Meta\TimestampedInterface;
 use MMB\Meta\VersionedInterface;
 
-class GithubArticle extends AbstractArticle implements VersionedInterface, TimestampedInterface
+class GithubArticle extends AbstractArticle implements VersionedInterface, TimestampedInterface, AuthoredInterface
 {
-    use MetaVersionTrait, MetaTimestampTrait;
+    use MetaVersionTrait, MetaTimestampTrait, MetaAuthorTrait;
 }
  
