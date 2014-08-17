@@ -10,6 +10,9 @@ use MMB\Meta\AuthoredInterface;
 use MMB\Meta\PublishedInterface;
 use MMB\Meta\TimestampedInterface;
 use MMB\Meta\VersionedInterface;
+use MMB\Meta\ContributedInterface;
+use MMB\Meta\Author;
+
 
 class GithubArticleService extends AbstractArticleService
 {
@@ -81,11 +84,26 @@ class GithubArticleService extends AbstractArticleService
         }
 
         if($article instanceof AuthoredInterface) {
+            $author = new \MMB\Meta\Author();
+
             if(!empty($commits[0]['commit']['author']['name'])) {
-                $article->setAuthorName($commits[0]['commit']['author']['name']);
+                $author->setName($commits[0]['commit']['author']['name']);
             }
             if(!empty($commits[0]['commit']['author']['email'])) {
-                $article->setAuthorEmail($commits[0]['commit']['author']['email']);
+                $author->setEmail($commits[0]['commit']['author']['name']);
+            }
+        }
+
+        if($article instanceof ContributedInterface) {
+            foreach($commits as $commit) {
+                $author = new Author();
+                if(!empty($commit['commit']['author']['name'])) {
+                    $author->setName($commits[0]['commit']['author']['name']);
+                }
+                if(!empty($commit['commit']['author']['email'])) {
+                    $author->setEmail($commits[0]['commit']['author']['name']);
+                }
+                $article->addAuthor($author);
             }
         }
 
