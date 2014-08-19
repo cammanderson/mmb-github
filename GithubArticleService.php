@@ -102,7 +102,7 @@ class GithubArticleService extends AbstractArticleService
                     $author->setName($commits[0]['commit']['author']['name']);
                 }
                 if (!empty($commit['commit']['author']['email'])) {
-                    $author->setEmail($commits[0]['commit']['author']['name']);
+                    $author->setEmail($commits[0]['commit']['author']['email']);
                 }
                 $article->addContributor($author);
             }
